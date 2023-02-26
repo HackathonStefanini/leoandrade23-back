@@ -9,37 +9,31 @@ import javax.persistence.*;
 public class Stefamon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdStefamon")
+    @Column(name = "id")
     private Long id;
-
     @Column(nullable = false)
     private String nome;
-
     @Column(nullable = false)
     private Integer vida;
-
     @Column(nullable = false)
     private Integer ataque;
-
     @Column(nullable = false)
     private Integer defesa;
-
     @Column(nullable = false)
     private Integer inteligencia;
 
     @Column(nullable = false)
     private Integer poder;
-
     @Column(nullable = false)
     private Integer velocidade;
-
     @Column(nullable = false)
     private String urlFoto;
 
-    public Stefamon(){}
 
-    public Stefamon(StefamonDTO stefamonDTO){
+    public Stefamon() {
+    }
+
+    public Stefamon(StefamonDTO stefamonDTO) {
         this.id = stefamonDTO.getId();
         this.nome = stefamonDTO.getNome();
         this.vida = stefamonDTO.getVida();

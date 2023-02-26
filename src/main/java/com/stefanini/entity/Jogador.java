@@ -15,7 +15,7 @@ public class Jogador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdJogador", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long id;
 
     @Column(unique = true, nullable = false)
@@ -34,7 +34,6 @@ public class Jogador {
             joinColumns = {@JoinColumn(name = "IdJogador")},
             inverseJoinColumns = {@JoinColumn(name = "IdStefamon")})
     private List<Stefamon> stefamons = new ArrayList<>();
-
 
     public Jogador() {
     }
