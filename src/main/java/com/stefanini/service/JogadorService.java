@@ -16,6 +16,13 @@ import java.util.stream.Collectors;
 public class JogadorService {
     @Inject
     JogadorRepository jogadorRepository;
+
+    public List<JogadorDTO> login(JogadorDTO jogadorDTO){
+        List<Jogador> jogadorLogin = jogadorRepository.login(jogadorDTO);
+        return jogadorLogin.stream().map(JogadorDTO::new).collect(Collectors.toList());
+    }
+
+
     public List<JogadorDTO> listarTodos() {
         List<Jogador> jogadores = jogadorRepository.listAll();
         return jogadores.stream().map(JogadorDTO::new).collect(Collectors.toList());

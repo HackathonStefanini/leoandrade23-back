@@ -3,31 +3,43 @@ package com.stefanini.entity;
 import com.stefanini.dto.JogadorDTO;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(schema = "tb_jogador")
 public class Jogador {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdJogador")
+    @Column(name = "IdJogador", nullable = false)
     private Long id;
 
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
+    @NotBlank(message = "O nickname é obrigatório")
     private String nickname;
 
-    @Column
+    @Column(nullable = false)
+    @Size(min = 4, max = 10, message = "Senha deve ter entre 4 a 10 caracteres")
     private String password;
 
-    @Column
-    private BigDecimal saldo;
+    @Column(nullable = false)
+    private BigDecimal saldo = BigDecimal.valueOf(100);
+
+    @ManyToMany
+    @JoinTable(name = "Jogador_Stefamon",
+            joinColumns = {@JoinColumn(name = "IdJogador")},
+            inverseJoinColumns = {@JoinColumn(name = "IdStefamon")})
+    private List<Stefamon> stefamons = new ArrayList<>();
+
 
     public Jogador() {
     }
 
-    public Jogador(JogadorDTO jogadorDTO){
+    public Jogador(JogadorDTO jogadorDTO) {
         this.id = jogadorDTO.getId();
         this.nickname = jogadorDTO.getNickname();
         this.password = jogadorDTO.getPassword();
@@ -74,11 +86,6 @@ public class Jogador {
         this.stefamons = stefamons;
     }
 
-    @ManyToMany
-    @JoinTable(name = "Jogador_Stefamon",
-            joinColumns = {@JoinColumn(name = "IdJogador")},
-            inverseJoinColumns = {@JoinColumn(name = "IdStefamon")})
-    private List<Stefamon> stefamons = new ArrayList<>();
 
 
 }

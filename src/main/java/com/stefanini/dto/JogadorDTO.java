@@ -9,7 +9,7 @@ public class JogadorDTO {
     private Long id;
     private String nickname;
     private String password;
-    private BigDecimal saldo;
+    private BigDecimal saldo = BigDecimal.valueOf(100);
 
     public JogadorDTO(){}
 

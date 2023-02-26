@@ -16,6 +16,12 @@ public class JogadorResource {
     @Inject
     JogadorService jogadorService;
 
+    @POST
+    @Path("/login")
+    public Response login(JogadorDTO jogadorDTO){
+        return Response.status(Response.Status.OK).entity(jogadorService.login(jogadorDTO)).build();
+    }
+
     @GET
     @Path("/{id}")
     public Response pegarPorId(@PathParam("id") Long id){
