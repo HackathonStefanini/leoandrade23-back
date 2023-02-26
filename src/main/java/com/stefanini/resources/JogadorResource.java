@@ -1,5 +1,6 @@
 package com.stefanini.resources;
 
+import com.stefanini.dto.JogadorDTO;
 import com.stefanini.entity.Jogador;
 import com.stefanini.service.JogadorService;
 
@@ -7,6 +8,7 @@ import javax.inject.Inject;
 import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/jogador")
 public class JogadorResource {
@@ -17,25 +19,25 @@ public class JogadorResource {
     @GET
     @Path("/{id}")
     public Response pegarPorId(@PathParam("id") Long id){
-        return Response.status(Response.Status.OK).entity(jogadorService.pegarPorId(id)).build();
+        JogadorDTO jogadorDTO = jogadorService.pegarPorId(id);
+        return Response.status(Response.Status.OK).entity(jogadorDTO).build();
     }
 
     @GET
     @Path("/todos")
     public Response listarTodos(){
-        return Response.status(Response.Status.OK).entity(jogadorService.listarTodos()).build();
+        List<JogadorDTO> listaJogadores = jogadorService.listarTodos();
+        return Response.status(Response.Status.OK).entity(listaJogadores).build();
     }
 
     @POST
-    public Response salvar(@Valid Jogador jogador) {
-        jogadorService.salvar(jogador);
-        return Response.status(Response.Status.CREATED).build();
+    public Response salvar(@Valid JogadorDTO jogadorDTO) {
+        return Response.status(Response.Status.CREATED).entity(jogadorService.salvar(jogadorDTO)).build();
     }
 
     @PUT
-    public Response alterar(@Valid Jogador jogador) {
-        jogadorService.alterar(jogador);
-        return Response.status(Response.Status.OK).build();
+    public Response alterar(@Valid JogadorDTO jogadorDTO) {
+        return Response.status(Response.Status.OK).entity(jogadorService.alterar(jogadorDTO)).build();
     }
 
     @DELETE
