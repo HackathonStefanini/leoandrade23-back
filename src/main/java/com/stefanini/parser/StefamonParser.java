@@ -5,9 +5,9 @@ import com.stefanini.entity.Stefamon;
 
 public class StefamonParser {
 
-    public static Stefamon DtotoEntity(StefamonDTO dto) {
-        Stefamon stefamon = new Stefamon();
-        return stefamon;
-    }
+//    public static Stefamon DtotoEntity(StefamonDTO dto) {
+//        Stefamon stefamon = new Stefamon();
+//        return stefamon;
+//    }
 
 }

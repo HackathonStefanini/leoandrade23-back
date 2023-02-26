@@ -4,13 +4,13 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
+@Entity
 @Table(schema = "tb_jogador")
 public class Jogador {
 
     @Id
-    @Column(name = "id_jogador")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_jogador")
     private Long id;
 
     @Column(unique = true)
